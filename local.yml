@@ -1,0 +1,12 @@
+---
+ - hosts: localhost
+   tasks:
+   - name: launching EC2 instance
+     ec2:
+       key_name: key_linux
+       instance_type: t2.micro
+       image: ami-02f3be1da5dbfdf1c
+       group: launch-wizard-19
+       vpc_subnet_id: subnet-d54610ac
+       region: us-west-2
+

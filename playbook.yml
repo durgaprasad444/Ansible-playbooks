@@ -1,0 +1,17 @@
+---
+- hosts: localhost 
+  roles:
+    # - facts
+    #- validate
+    #- dbd_sybase
+    #- facts
+    #- path_set
+    #- velabs_profile
+    #- xrdpi
+    #- bonding
+    #- sandeep
+    #- xrdp
+    #- shutdown
+    # - tomcat
+    # - basic_ec2_instance
+    - autoscaling

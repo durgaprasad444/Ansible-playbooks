@@ -1,0 +1,10 @@
+---
+- hosts: all
+  tasks: 
+    - name: to add user on remote servers
+      user:
+        name: james
+        comment: john doe
+        uid: 1007
+        shell: /bin/bash
+

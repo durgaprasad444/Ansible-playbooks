@@ -1,0 +1,16 @@
+---
+- hosts: servers
+  gather_facts: yes
+  tasks:
+    - name: playbook for tags concept
+      file: 
+        path: /tmp/tags
+        state: touch
+      tags: 
+        - filetags
+    - name: template
+      template: 
+        src: load.j2
+        dest: /tmp/load.j2.html
+      ignore_errors: yes
+

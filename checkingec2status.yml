@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  remote_user: root
+  become: yes
+  tasks:
+    - name: to check the connection of aws console
+      ec2:
+        aws_access_key: YQ
+        aws_secret_key: AE
+        key_name: key_linux
+        image: ami-6cd6f714
+        region: us-west-2
+        instance_type: t2.micro
+#        vpc_subnet_id: subnet-c2e09089
+        group_id: sg-098d8c9b988c6bf5a
+        assign_public_ip: yes

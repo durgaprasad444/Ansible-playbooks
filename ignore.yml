@@ -1,0 +1,25 @@
+--- 
+- hosts: 192.168.50.182
+  remote_user: root
+  become: yes
+  tasks:
+    - name: ignore errors playbook
+      copy: 
+        src: play.html
+        dest: /tmp/
+      ignore_errors: yes
+    - name: install elinks package
+      yum:
+        name: elinks
+        state: present
+    - name: creation of file
+      file:
+        path: /tmp/abc
+        state: touch
+    - name: service stop of vsftpd
+      service:
+        name: vsftpd
+        state: stopped
+- name: import playbook
+  import_playbook: simple.yml
+

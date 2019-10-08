@@ -1,0 +1,38 @@
+---
+- hosts: localhost
+  remote_user: root
+  become: yes
+  gather_facts: yes
+  tasks:
+    - name: creating an instance 
+      ec2: 
+        image: ami-6cd6f714 
+        instance_type: t2.micro
+        region: us-west-2
+        key_name: key_linux
+        vpc_subnet_id: subnet-d54610ac
+        assign_public_ip: yes
+        wait: yes
+        wait_timeout: 100
+        instance_tags: 
+          Name: Ansible
+        user_data: "{{ lookup('file', 'user_data.sh') }}"
+      register: ec2
+    - name: sleep for 300 seconds and continue with play
+      wait_for: timeout=300
+      delegate_to: localhost   
+    - debug: var=ec2.instances[0].id
+    - name: creating an AMI image from ansible playbook
+      ec2_ami:
+        instance_id: "{{ ec2.instances[0].id }}"
+        name: ansible1
+        region: us-west-2
+        tags:
+          Name: ansible1
+    - name: terminate the created instance
+      ec2: 
+        region: us-west-2
+        instance_ids: "{{ ec2.instances[0].id }}"
+        state: absent
+      tags:
+        - terminate

@@ -1,0 +1,9 @@
+---
+- hosts: 192.168.50.181
+  remote_user: root
+  become: yes
+  tasks:
+    - name: to create an repository file in yum repository location
+      template:
+        src: yum.repo.j2
+        dest: /etc/yum.repos.d/yum.repo

@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  tasks:
+    - include_role:
+        name: aws_services
+#        tasks_from: create_ec2.yml
+#        tasks_from: stop_ec2.yml
+        tasks_from: terminate_ec2.yml

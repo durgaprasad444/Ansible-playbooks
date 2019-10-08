@@ -1,0 +1,15 @@
+---
+- hosts: servers
+  gather_facts: no       
+  tasks:
+    - name: pinging 
+      command: ping -c 10 192.168.50.183
+      register: report
+    - debug: var=report  
+#    - name: shutdown
+#      command: /sbin/shutdown -h now
+#      sudo: yes
+#    - name: wait go down
+#      local_action: wait_for host=192.168.50.182 
+#     port: 22 
+#      state: stopped

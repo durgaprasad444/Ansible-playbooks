@@ -1,0 +1,15 @@
+---
+- hosts: servers
+  remote_user: root
+  vars_files:
+    - abc.yml
+  tasks:
+    - name: install
+      yum: 
+        name: "{{pkg1}}"
+        state: present
+    - name: install
+      yum:
+        name: "{{pkg2}}"
+        state: present 
+ 

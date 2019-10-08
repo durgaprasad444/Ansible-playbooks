@@ -1,0 +1,10 @@
+---
+- hosts: "{{host}}"
+  remote_user: root
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: install vsftpd
+      yum:
+        name: vsftpd
+        state: present

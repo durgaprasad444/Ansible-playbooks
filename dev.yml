@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  gather_facts: no
+  remote_user: root
+  become: yes
+  tasks:
+    - name: launch the instance
+      ec2:
+        aws_access_key: D4Q
+        aws_secret_key: LCOSF
+        key_name: key_linux
+        instance_type: t2.micro
+        region: us-west-2
+        image: ami-00f7c900d2e7133e1
+        wait: yes
+        exact_count: 1
+        count_tag:
+          name: 1
+        instance_tags:
+          name: "webserver{{ item }}"
+      with_sequence: start=1 end=4
+      when: tags_name == "webserver1"

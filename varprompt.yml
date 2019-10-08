@@ -1,0 +1,14 @@
+---
+- hosts: 192.168.50.182
+  remote_user: root
+  become: yes
+  gather_facts: no
+  vars_prompt:
+    - name: elinks package
+      prompt: enter the package name
+      private: no
+  tasks:
+    - name: install the package
+      yum:
+        name: elinks
+        state: present

@@ -1,0 +1,7 @@
+---
+- hosts: shutdown
+  remote_user: root
+  become: yes
+  tasks:
+    - name: To shutdown all running instances in VM
+      command: shutdown -h now

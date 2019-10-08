@@ -1,0 +1,19 @@
+---
+- hosts: 192.168.50.182
+  remote_user: root
+  become: yes
+  gather_facts: no
+
+  vars:
+    package1: finger
+    package2: httpd
+  
+  tasks:
+    - name: installing packages with vars concept
+      yum:
+        name: "{{ package1 }}"
+        state: present
+    - name: installing package from vars concept
+      yum:
+        name: "{{ package2 }}"
+        state: present

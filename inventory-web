@@ -1,0 +1,11 @@
+[web-servers]
+ server2
+ server3
+
+[prod-servers]
+ server4
+ server5
+
+[all:children]
+ web-servers
+ prod-servers

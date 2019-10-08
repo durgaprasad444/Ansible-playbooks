@@ -1,0 +1,9 @@
+---
+ -  name: install the firefox package
+    yum:
+     name: firefox
+     state: latest
+ -  name: start the firefox service
+    service:
+     name: firefox.service
+     state: running

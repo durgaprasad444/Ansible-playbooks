@@ -1,0 +1,13 @@
+---
+- hosts: 192.168.50.182
+  gather_facts: false
+  tasks:
+    - name: to add several users
+      user:
+        name: "{{item}}"
+        groups: "wheel"
+        state: present  
+      with_items:
+        - user1
+        - user2
+  

@@ -1,0 +1,21 @@
+---
+- hosts: dbservers
+  remote_user: svcansible
+  become: yes
+  gather_facts: yes
+  tasks:
+    - name: installing httpd server
+      yum:
+        name: httpd
+        state: present
+
+    - name: copy index.html 
+      copy:
+        src: index.html
+        state: present
+    
+    - name: start the httpd service
+      service:
+        name: httpd
+        state: startted
+        enabled: yes 

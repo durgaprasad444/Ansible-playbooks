@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  gather_facts: yes
+  tasks:
+    - name: install package httpd
+      yum:
+        name: httpd
+        state: present
+    - name: service start
+      service:
+        name: httpd
+        state: started
+    - name: copy file
+      copy:
+        content: '# welcome'
+        dest: /var/www/html/myfile1.html

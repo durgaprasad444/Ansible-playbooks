@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  remote_user: root
+  become: yes
+  tasks:
+    - name: destroy the instance
+      ec2:
+        instance_tags: 
+          Name: destroy
+        region: us-west-2
+        state: absent

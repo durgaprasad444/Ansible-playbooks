@@ -1,0 +1,23 @@
+---
+- hosts: servers
+  remote_user: root
+  become: yes
+  gather_facts: yes
+  tasks:
+    - name: installing vsftpd package
+      yum:                              
+        name: vsftpd
+        state: present
+      when: ansible_os_family == "RedHat"
+    - name: install httpd package
+      apt:
+        name: httpd
+        state: present
+      when: ansible_os_family == "Debian"
+    - name: service httpd stop
+      service:
+        name: httpd
+        state: stopped
+      when: ansible_hostname == "ansible-client1"
+
+     

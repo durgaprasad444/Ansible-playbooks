@@ -1,0 +1,9 @@
+---
+- hosts: 192.168.50.182 
+  remote_user: root
+  tasks:
+    - debug:
+        msg: complete
+- name: include module
+  import_playbook: firstplay.yaml
+

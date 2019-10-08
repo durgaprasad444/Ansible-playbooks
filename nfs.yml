@@ -1,0 +1,25 @@
+---
+- hosts: servers
+  remote_user: root
+  become: yes
+  gather_facts: yes
+  tasks:
+    - name: install nfs-utils package
+      yum:
+        name: nfs-utils
+        state: present
+    - name: install rpcbind package 
+      yum:
+        name: rpcbind
+        state: present
+    - name: nfs share directory 
+      file:
+        path: /nfs
+        state: directory
+    - name: mounting on client machines
+      mount:
+        path: /nfs
+        src: 192.168.50.67:/nfs_share
+        fstype: nfs
+        opts: rw,sync
+        state: mounted
